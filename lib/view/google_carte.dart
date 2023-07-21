@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ipssisqy2023/controller/chat.dart';
 import 'package:ipssisqy2023/controller/firestore_helper.dart';
 
 import '../model/my_user.dart';
@@ -64,8 +65,8 @@ class _CarteGoogleState extends State<CarteGoogle> {
 
       // Boucle sur les user
       snapshot.docs.forEach((DocumentSnapshot doc) {
+        MyUser user = MyUser(doc);
         //Concat Nom complet
-        String fullName = doc['NOM'] + doc['PRENOM'];
 
         // Récupération champ GEOPOINT
         GeoPoint? geoPoint = doc['LOCALISATION'] as GeoPoint?;
@@ -79,7 +80,14 @@ class _CarteGoogleState extends State<CarteGoogle> {
               Marker(
                 markerId: MarkerId(doc.id),
                 position: latLng,
-                infoWindow: InfoWindow(title: fullName),
+                infoWindow: InfoWindow(title: user.fullName),
+                onTap: (){
+                  Navigator.push(context,MaterialPageRoute(
+                      builder : (context){
+                        return UserChat(user:user);
+                      }
+                  ));
+                }
               ),
             );
           });

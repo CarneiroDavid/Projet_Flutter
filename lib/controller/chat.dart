@@ -55,19 +55,6 @@ class _UserChatState extends State<UserChat> {
             itemCount: listMsg.length,
             itemBuilder: (context,idx) {
               var msgToDisplay = listMsg[idx];
-              // return SizedBox(
-              //   height:80,
-              //
-              //   child: Card(
-              //     color: (msgToDisplay['sendBy'] == me.id)?Colors.lightGreen:Colors.pinkAccent,
-              //
-              //     elevation: 15,
-              //     child:Padding(
-              //       padding: const EdgeInsets.all(12),
-              //       child: Text(msgToDisplay['msg']),
-              //     ),
-              //   ),
-              // );
               if(msgToDisplay['sendBy'] == me.id){
                 return ChatBubble(text: msgToDisplay['msg'], isCurrentUser: true);
               }else{
