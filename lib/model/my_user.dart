@@ -13,6 +13,7 @@ class MyUser {
   String? avatar;
   Gender genre = Gender.indefini;
   List? favoris;
+  GeoPoint? position;
 
 
 
@@ -55,6 +56,7 @@ class MyUser {
       }
 
     avatar = map["AVATAR"] ?? defaultImage;
+    position = map["LOCALISATION"];
 
   }
 
