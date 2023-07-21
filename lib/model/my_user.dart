@@ -14,6 +14,8 @@ class MyUser {
   Gender genre = Gender.indefini;
   List? favoris;
 
+  List? convs;
+
 
 
   String get fullName {
@@ -44,7 +46,6 @@ class MyUser {
       {
         pseudo = provisoirePseudo;
       }
-
     Timestamp? birthdaytprovisoire = map["BIRTHDAY"];
     if(birthdaytprovisoire == null){
       birthday = DateTime.now();
@@ -56,6 +57,14 @@ class MyUser {
 
     avatar = map["AVATAR"] ?? defaultImage;
 
+
+
+
+
+
+
+
+    convs = map["convs"];
   }
 
 
