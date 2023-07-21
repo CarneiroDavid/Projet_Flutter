@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ipssisqy2023/controller/chat.dart';
 import 'package:ipssisqy2023/controller/firestore_helper.dart';
 import 'package:ipssisqy2023/globale.dart';
 import 'package:ipssisqy2023/model/my_user.dart';
@@ -46,6 +47,7 @@ class _MyFavoritesState extends State<MyFavorites> {
             },
             child: Container(
               padding: const EdgeInsets.all(10),
+             height:230,
              decoration: BoxDecoration(
                color: Colors.white,
                borderRadius: BorderRadius.circular(15)
@@ -57,7 +59,22 @@ class _MyFavoritesState extends State<MyFavorites> {
                       radius: 30,
                       backgroundImage: NetworkImage(otherUser.avatar ?? defaultImage,),
                     ),
-                    Text(otherUser.fullName, style: TextStyle(color: Colors.black))
+                    Text(otherUser.fullName, style: TextStyle(color: Colors.black)),
+                    ElevatedButton(
+                        style:ElevatedButton.styleFrom(
+                          backgroundColor : Colors.purple,
+                          shape : const StadiumBorder()
+                        ),
+                        onPressed: (){
+                          Navigator.push(context,MaterialPageRoute(
+                              builder : (context){
+                                return UserChat(user:otherUser);
+                              }
+                          ));
+                        },
+                        child: const Text('Discuter'),
+
+                    )
                   ],
                 ),
               ),

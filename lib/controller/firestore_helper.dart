@@ -12,7 +12,6 @@ class FirestoreHelper{
   final storage = FirebaseStorage.instance;
   final cloudUsers = FirebaseFirestore.instance.collection("UTILISATEURS");
 
-
   //inscription
    Future <MyUser> register(String email , String password, String nom, String prenom) async {
     UserCredential resultat = await auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -54,7 +53,12 @@ class FirestoreHelper{
      DocumentSnapshot snapshot = await cloudUsers.doc(uid).get();
      return MyUser(snapshot);
   }
-
+  createMessage(String userId, map){
+     cloudUsers.doc(userId).update({
+       "convs": FieldValue.arrayUnion([map])
+     });
+     return map;
+  }
   addUser(String uid, Map<String,dynamic> data){
     cloudUsers.doc(uid).set(data);
 
