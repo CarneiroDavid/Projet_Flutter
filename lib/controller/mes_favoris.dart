@@ -66,11 +66,7 @@ class _MyFavoritesState extends State<MyFavorites> {
                           shape : const StadiumBorder()
                         ),
                         onPressed: (){
-                          Navigator.push(context,MaterialPageRoute(
-                              builder : (context){
-                                return UserChat(user:otherUser);
-                              }
-                          ));
+
                         },
                         child: const Text('Discuter'),
 
